@@ -7,16 +7,15 @@ def calcAccuracy(LPred, LTrue):
         LPred (array): Predicted data labels.
         LTrue (array): Ground truth data labels.
 
-    Retruns:
+    Returns:
         acc (float): Prediction accuracy.
     """
 
     # --------------------------------------------
     # === Your code here =========================
     # --------------------------------------------
-    correct_predictions = np.sum(LPred == LTrue)
-    total_samples = len(LTrue)
-    acc = correct_predictions / total_samples
+    cM = calcConfusionMatrix(LPred, LTrue)
+    acc = calcAccuracyCM(cM)
     # ============================================
     return acc
 
@@ -36,18 +35,18 @@ def calcConfusionMatrix(LPred, LTrue):
     # --------------------------------------------
     # === Your code here =========================
     # --------------------------------------------
+    
     # Get unique labels
     unique_labels = np.unique(np.concatenate([LPred, LTrue]))
-
+    unique_labels_count = len(unique_labels)
+    
     # Initialize confusion matrix
-    cM = np.zeros((len(unique_labels), len(unique_labels)), dtype=int)
+    cM = np.zeros((unique_labels_count, unique_labels_count))
 
-    # Fill confusion matrix
-    for i, true_label in enumerate(unique_labels):
-        true_indices = (LTrue == true_label)
-        for j, pred_label in enumerate(unique_labels):
-            pred_indices = (LPred == pred_label)
-            cM[i, j] = np.sum(true_indices & pred_indices)
+    # Populate confusion matrix
+    for p, r in zip(LPred, LTrue):
+        cM[r][p] += 1
+
     # ============================================
 
     return cM
@@ -67,9 +66,8 @@ def calcAccuracyCM(cM):
     # --------------------------------------------
     # === Your code here =========================
     # --------------------------------------------
-    correct_predictions = np.sum(np.diag(cM))
-    total_predictions = np.sum(cM)
-    acc = correct_predictions / total_predictions
+    # np.trace will return the sum of diag     
+    acc = np.trace(cM) / np.sum(cM)  
     # ============================================
     
     return acc
