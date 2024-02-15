@@ -210,6 +210,11 @@ def PlotClassifications(testImages, idxFaceCorr, idxFaceMis, idxNonFaceCorr, idx
         ax.set_yticks([])
         
     plt.show()
+    print(f"Correctly classified faces: {idxFaceCorr[:N]}")
+    print(f"Misclassified faces: {idxFaceMis[:N]}")
+    print(f"Correctly classified non-faces: {idxNonFaceCorr[:N]}")
+    print(f"Misclassified non-faces: {idxNonFaceMis[:N]}")
+    
     
 
 def PlotSelectedHaarFeatures(haarFeatureMasks, selectedIdx, N=None, shuffle=False):
@@ -300,10 +305,13 @@ def PlotSolvayHeatmap(cSolvay):
     coords = Solvay['Coords']
     
     hm = np.zeros_like(img)
-    n  = np.zeros_like(img)
-    for i,c in enumerate(cSolvay):
+    n  = np.zeros_like(img)    
+    for i,c in enumerate(cSolvay):        
+        #hm[coords[i,0]:(coords[i,0]+24), coords[i,1]:(coords[i,1]+24)] += c
         hm[coords[i,0]:(coords[i,0]+24), coords[i,1]:(coords[i,1]+24)] += c
         n[coords[i,0]:(coords[i,0]+24), coords[i,1]:(coords[i,1]+24)] += 1
+        
+    
     hm /= n
     
     fig = plt.figure(figsize=(16,16))
