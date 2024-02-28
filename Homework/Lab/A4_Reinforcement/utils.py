@@ -10,8 +10,12 @@ def getpolicy(Q):
     operations. It's possible to implement this in one line of code.
     """
 
-    P = None
-
+    shape = Q.shape
+    P = np.zeros((shape[0], shape[1]))
+     
+    for i in range(shape[0]):        
+        for j in range(shape[1]) :        
+           P[i][j] = np.argmax(Q[i,j])          
     return P
 
 
@@ -22,7 +26,12 @@ def getvalue(Q):
     operations. It's possible to implement this in one line of code.
     """
     
-    V = None
+#    V = np.max(Q, axis=1)
+    shape = Q.shape
+    V = np.zeros((shape[0], shape[1]))
+     
+    for i in range(shape[0]) :        
+        for j in range(shape[1]) :        
+           V[i][j] = np.max(Q[i,j])            
 
     return V
-
