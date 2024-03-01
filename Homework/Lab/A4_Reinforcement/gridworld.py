@@ -73,9 +73,6 @@ class GridWorld(World):
             P = None
             V = None
             
-        print("P: ", P)
-        print("V: ", V)
-            
         if V is None:
             plt.rcParams['figure.figsize']=(6.5,7)
         else:
@@ -359,5 +356,3 @@ class GridWorld8(GridWorld):
         u[P==5] = -0.7
         
         plt.quiver(v,u,color='r')
-        
-        
