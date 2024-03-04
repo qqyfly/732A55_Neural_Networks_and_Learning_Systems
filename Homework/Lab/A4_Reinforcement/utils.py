@@ -9,7 +9,6 @@ def getpolicy(Q):
     in order to do this, and looping will be much slower than using matrix
     operations. It's possible to implement this in one line of code.
     """
-
     # shape = Q.shape
     # P = np.zeros((shape[0], shape[1]))
      
@@ -27,8 +26,6 @@ def getvalue(Q):
     in order to do this, and looping will be much slower than using matrix
     operations. It's possible to implement this in one line of code.
     """
-    
-
     # shape = Q.shape
     # V = np.zeros((shape[0], shape[1]))
      
