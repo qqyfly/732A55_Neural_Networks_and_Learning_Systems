@@ -552,7 +552,7 @@ def plotProgressNetwork(fig, W, B, metrics, cmap="coolwarm", n=None):
     # Colorbar
     norm = plt.cm.ScalarMappable(norm=None, cmap=cm)
     norm.set_clim(-vmax, vmax)
-    plt.colorbar(norm, location="right")
+    #plt.colorbar(norm, location="right")
 
     ######
 
@@ -748,8 +748,8 @@ def plotProgressOCR(fig, W, metrics, cmap="coolwarm", n=None):
     plt.subplot(2, 10, 3)
     plt.title("Network weights for each digit (blue: positive, red: negative) \n\n 2")
 
-    # plt.subplot(2,10,1)
-    # plt.colorbar(location="left")
+    #plt.subplot(2,10,1)
+    #plt.colorbar(location="left")
 
     if n is not None:
         plt.suptitle(f"Epoch {n}")

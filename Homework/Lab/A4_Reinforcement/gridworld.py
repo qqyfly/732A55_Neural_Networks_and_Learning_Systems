@@ -184,6 +184,9 @@ class GridWorld4(GridWorld):
             act = np.random.choice(self.getActions())
         return super().doAction(act)
     
+    def printreward(self):
+        print(self._rewardMap)        
+    
     
 class GridWorld5(GridWorld):
     def __init__(self):
